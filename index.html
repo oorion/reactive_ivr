@@ -2,11 +2,30 @@
 <html>
   <head>
     <title>Reactive Ivr</title>
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/styles.css">
     <link href="css/application.css" media="screen" rel="stylesheet" type="text/css">
+
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="js/underscore.js"></script>
+    <script src="js/backbone.js"></script>
+
+    <script src="/js/react-with-addons.js"></script>
+    <script src="/js/JSXTransformer.js"></script>
+
+    <script type="text/jsx" src="/js/nodes/components/prompt.js"></script>
+    <script type="text/jsx" src="/js/nodes/components/keypress.js"></script>
+    <script type="text/jsx" src="/js/nodes/components/node_type.js"></script>
+    <script type="text/jsx" src="/js/nodes/add_keypress.js"></script>
+    <script type="text/jsx" src="/js/nodes/abstract_node.js"></script>
+    <script type="text/jsx" src="/js/nodes/question_node.js"></script>
+    <script type="text/jsx" src="/js/nodes/transfer_node.js"></script>
+    <script type="text/jsx" src="/js/nodes/hangup_node.js"></script>
+
+
+    <script src="js/backbone/models/node_model.js"></script>
+    <script src="js/backbone/collections/node_collection.js"></script>
 
     <script>
       var app = {};
@@ -18,52 +37,51 @@
           "destination" : null,
           "id":164,
           "leaf":false,
-          "children":
-            [{"node_type":"Transfer",
+          "children":[
+            {
+              "node_type":"Transfer",
               "prompt":"Please wait while we connect you with our nearest agent...",
               "destination":"800-437-7950",
               "id":165,
               "leaf":true,
-              "children":null},
-              {"node_type":"Transfer",
-                "prompt":"",
-                "destination":"800-437-7950",
-                "id":166,
-                "leaf":true,
-                "children":null},
-              {"node_type" : "Question",
-                "prompt" : "Okay, sorry about that. ",
-                "destination" : null,
-                "id":164,
-                "leaf":false,
-                "children":
-                  [{"node_type":"Hang Up",
-                    "prompt":"",
-                    "destination":null,
-                    "id":166,
-                    "leaf":true,
-                    "children":null},
-                    {"node_type":"Hang Up",
-                      "prompt":"Sorry about that. Bye.",
-                      "destination":null,
-                      "id":167,
-                      "leaf":true,
-                      "children":null}]}]
-      }
+              "children":null
+            },
+            {
+              "node_type":"Transfer",
+              "prompt":"",
+              "destination":"800-437-7950",
+              "id":166,
+              "leaf":true,
+              "children":null
+            },
+            {
+              "node_type" : "Question",
+              "prompt" : "Okay, sorry about that. ",
+              "destination" : null,
+              "id":164,
+              "leaf":false,
+              "children":[
+                {
+                  "node_type":"Hang Up",
+                  "prompt":"",
+                  "destination":null,
+                  "id":166,
+                  "leaf":true,
+                  "children":null
+                },
+                {
+                  "node_type":"Hang Up",
+                  "prompt":"Sorry about that. Bye.",
+                  "destination":null,
+                  "id":167,
+                  "leaf":true,
+                  "children":null
+                }
+              ]
+            }
+          ]
+        }
     </script>
-
-    <script src="/js/react-with-addons.js"></script>
-    <script src="/js/JSXTransformer.js"></script>
-
-    <script type="text/jsx" src="/js/nodes/components/prompt.js"></script>
-    <script type="text/jsx" src="/js/nodes/components/keypress.js"></script>
-    <script type="text/jsx" src="/js/nodes/components/node_type.js"></script>
-
-    <script type="text/jsx" src="/js/nodes/abstract_node.js"></script>
-    <script type="text/jsx" src="/js/nodes/question_node.js"></script>
-    <script type="text/jsx" src="/js/nodes/transfer_node.js"></script>
-    <script type="text/jsx" src="/js/nodes/hangup_node.js"></script>
-    <script type="text/jsx" src="/js/nodes/add_keypress.js"></script>
   </head>
 
   <body class="layout-dashboard">
@@ -180,8 +198,10 @@
 
 
     <script type="text/jsx">
+      window.root = new NodeModel(app.ivr_json);
+      console.log(root);
       React.render(
-          <app.AbstractNode node={app.ivr_json} />,
+          <app.AbstractNode node={root} root={true} />,
           document.getElementById("ivr-tree")
       );
     </script>
