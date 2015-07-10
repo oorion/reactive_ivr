@@ -1,0 +1,61 @@
+body {
+  font-family: "Helvetica Neue";
+  margin: 20px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.node {
+  border: 1px solid #ccc;
+  background-color: #eee;
+  margin: 10px;
+  padding: 5px;
+}
+
+.content {
+  float: left;
+}
+
+.keypress {
+  float: left;
+  border: 1px solid #bbb;
+  background-color: #ddd;
+  padding: 10px 15px;
+  margin-right: 10px;
+}
+
+h5 {
+  margin-top: 0;
+  float: left;
+}
+
+h3 {
+  color: #BF616A;
+}
+
+.hidden {
+  display: none;
+}
+
+.togglable {
+  color: #D78770;
+  cursor: pointer;
+}
+
+.togglable-down::after,
+.togglable-up::after {
+  font-size: 8px;
+  margin-left: 0.5em;
+}
+
+.togglable-down::after {
+  content: "▼";
+  display: inline-block;
+}
+
+.togglable-up::after {
+  content: "▶";
+  display: inline-block;
+}

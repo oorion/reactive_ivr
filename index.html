@@ -30,19 +30,33 @@
                 "id":166,
                 "leaf":true,
                 "children":null},
-              {"node_type":"Hang Up",
-                "prompt":"Sorry about that. Bye.",
-                "destination":null,
-                "id":167,
-                "leaf":true,
-                "children":null}]
+              {"node_type" : "Question",
+                "prompt" : "Okay, sorry about that. ",
+                "destination" : null,
+                "id":164,
+                "leaf":false,
+                "children":
+                  [{"node_type":"Hang Up",
+                    "prompt":"",
+                    "destination":null,
+                    "id":166,
+                    "leaf":true,
+                    "children":null},
+                    {"node_type":"Hang Up",
+                      "prompt":"Sorry about that. Bye.",
+                      "destination":null,
+                      "id":167,
+                      "leaf":true,
+                      "children":null}]}]
       }
     </script>
 
-    <script src="/js/react.js"></script>
+    <script src="/js/react-with-addons.js"></script>
     <script src="/js/JSXTransformer.js"></script>
 
     <script type="text/jsx" src="/js/react_ivr.js"></script>
+    <script type="text/jsx" src="/js/nodes/abstract_node.js"></script>
+    <script type="text/jsx" src="/js/nodes/question_node.js"></script>
   </head>
   <body>
     <h1>Reactive Ivr</h1>
@@ -51,7 +65,7 @@
 
     <script type="text/jsx">
       React.render(
-          <app.TreeNode node={app.ivr_json} />,
+          <app.AbstractNode node={app.ivr_json} />,
           document.getElementById("ivr-tree")
       );
     </script>
