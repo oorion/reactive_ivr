@@ -19,6 +19,7 @@ var BackboneMixin = {
   }
 };
 
+
 app.AbstractNode = React.createClass({
   mixins: [BackboneMixin],
 
@@ -34,6 +35,7 @@ app.AbstractNode = React.createClass({
   },
 
   componentDidMount: function () {
+    this.makeSortable();
     //var Router = Backbone.Router.extend({
     //  routes: {
     //    '': 'all',
@@ -53,6 +55,10 @@ app.AbstractNode = React.createClass({
     }
   },
 
+  makeSortable: function() {
+    $('ul.children').sortable();
+  },
+
   componentDidUpdate: function () {
     // If saving were expensive we'd listen for mutation events on Backbone and
     // do this manually. however, since saving isn't expensive this is an
@@ -63,6 +69,9 @@ app.AbstractNode = React.createClass({
   },
 
   handleTypeChange: function(newNodeType) {
+    // keep backbone up to date
+    this.props.node.set({ node_type: newNodeType });
+
     this.setState({
       node_type: newNodeType
     });
@@ -70,13 +79,13 @@ app.AbstractNode = React.createClass({
 
   addNode: function() {
     node = {
-      "node_type" : "Transfer",
+      "node_type" : "Connect",
       "prompt" : "",
-      "destination" : null,
+      "destination_phone_number" : "800-437-1234",
       "id": (new Date).getTime(),
       "leaf": false,
       "children": []
-    },
+    }
 
     this.props.node.children.create(node);
   },
@@ -93,7 +102,7 @@ app.AbstractNode = React.createClass({
     if (anyChildren) {
       var self = this;
       childNodes = this.props.node.children.map(function(node, index) {
-        return <li key={node.get('id')}><app.AbstractNode node={node} keypress={index+1} /></li>
+        return <li className="child-node" key={node.get('id')}><app.AbstractNode node={node} keypress={index+1} /></li>
       });
 
       classObj = {
@@ -112,28 +121,30 @@ app.AbstractNode = React.createClass({
       style = {maxHeight: "0px", opacity: "0.01", transition: "all .3s ease-out", WebkitTransition: "all .3s ease-out"};
     }
     else {
-      style = {maxHeight: "1000px", opacity: "1", transition: "all .3s ease-in", WebkitTransition: "all .3s ease-in"};
+      style = {maxHeight: "10000px", opacity: "1", transition: "all .3s ease-in", WebkitTransition: "all .3s ease-in"};
 
     }
 
     var ViewClass;
 
     switch(this.state.node_type) {
-      case 'Question':
+      case 'Menu':
         ViewClass = app.QuestionNode;
         break;
 
-      case 'Transfer':
+      case 'Connect':
         ViewClass = app.TransferNode;
         break;
 
-      case 'Hang Up':
+      case 'EndCall':
         ViewClass = app.HangUpNode;
         break;
 
       default:
         throw("Unknown ivr node type: " + this.state.node_type);
     }
+
+    //<span className={React.addons.classSet(classObj)} onClick={this.toggle}>collapse</span>
 
     return (
       <div>
@@ -143,8 +154,8 @@ app.AbstractNode = React.createClass({
           <ViewClass node={this.props.node} />
           <button className="trash-btn" style={{float: "right"}} onClick={this.removeNode}><span className="glyphicon glyphicon-trash trash-glyph"></span></button>
         </div>
-        <button className={"btn btn-info " + React.addons.classSet(classObj)} onClick={this.toggle}>  Collapse</button>
-        <ul style={style}>
+        <span className={React.addons.classSet(classObj)} onClick={this.toggle}>collapse</span>
+        <ul className="node-list children" style={style}>
           {childNodes}
           <li className="add"><app.AddKeypress node_type={this.state.node_type} clicked={this.addNode} /></li>
         </ul>
@@ -165,7 +176,4 @@ app.AbstractNode = React.createClass({
     }
 
   }
-
-
-
 });

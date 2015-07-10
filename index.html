@@ -6,6 +6,7 @@
     <link href="css/application.css" media="screen" rel="stylesheet" type="text/css">
 
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="js/underscore.js"></script>
     <script src="js/backbone.js"></script>
@@ -31,47 +32,47 @@
 
       app.ivr_json =
         {
-          "node_type" : "Question",
+          "node_type" : "Menu",
           "prompt" : "For sales, press one. For customer support, press two. If you reached this number by mistake, press 3.",
-          "destination" : null,
+          "destination_phone_number" : null,
           "id":164,
           "leaf":false,
           "children":[
             {
-              "node_type":"Transfer",
+              "node_type":"Connect",
               "prompt":"Please wait while we connect you with our nearest agent...",
-              "destination":"800-437-7950",
+              "destination_phone_number":"800-437-7950",
               "id":165,
               "leaf":true,
               "children":null
             },
             {
-              "node_type":"Transfer",
+              "node_type":"Connect",
               "prompt":"",
-              "destination":"800-437-7950",
+              "destination_phone_number":"800-437-7950",
               "id":166,
               "leaf":true,
               "children":null
             },
             {
-              "node_type" : "Question",
+              "node_type" : "Menu",
               "prompt" : "Okay, sorry about that. ",
-              "destination" : null,
+              "destination_phone_number" : null,
               "id":164,
               "leaf":false,
               "children":[
                 {
-                  "node_type":"Hang Up",
+                  "node_type":"EndCall",
                   "prompt":"",
-                  "destination":null,
+                  "destination_phone_number":null,
                   "id":166,
                   "leaf":true,
                   "children":null
                 },
                 {
-                  "node_type":"Hang Up",
+                  "node_type":"EndCall",
                   "prompt":"Sorry about that. Bye.",
-                  "destination":null,
+                  "destination_phone_number":null,
                   "id":167,
                   "leaf":true,
                   "children":null
@@ -187,6 +188,8 @@
                 </div>
                 <div class="panel-body">
                   <div id="ivr-tree"></div>
+                  <hr />
+                  <button id="save" class="btn btn-primary" onclick="syncTree()">Save</button>
                 </div>
               </div>
           </div>
@@ -194,7 +197,26 @@
       </div>
     </div>
 
+    <script>
+      function syncTree() {
+        $("#save").attr('disabled','disabled').html("Saving...");
 
+        var json = root.toJSON();
+        var data = { name : 'Reactive Demo', ivr_tree : { record_calls : 1, root : JSON.stringify(json) } };
+        $.ajax({
+          url: "http://localhost:3001/ivr_trees/11",
+          type: "POST",
+          data: data,
+          dataType: "json",
+          success: function() {
+            $("#save").removeAttr('disabled').html("Save");
+          },
+          error: function() {
+            //alert('something went terribly wrong');
+          }
+        })
+      }
+    </script>
 
     <script type="text/jsx">
       window.root = new NodeModel(app.ivr_json);
