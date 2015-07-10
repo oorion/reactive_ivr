@@ -1,9 +1,66 @@
+var BackboneMixin = {
+  componentDidMount: function () {
+    // Whenever there may be a change in the Backbone data, trigger a
+    // reconcile.
+    this.getBackboneCollections().forEach(function (collection) {
+      // explicitly bind `null` to `forceUpdate`, as it demands a callback and
+      // React validates that it's a function. `collection` events passes
+      // additional arguments that are not functions
+      collection.on('add remove change', this.forceUpdate.bind(this, null));
+    }, this);
+  },
+
+  componentWillUnmount: function () {
+    // Ensure that we clean up any dangling references when the component is
+    // destroyed.
+    this.getBackboneCollections().forEach(function (collection) {
+      collection.off(null, null, this);
+    }, this);
+  }
+};
+
+
 app.AbstractNode = React.createClass({
+  mixins: [BackboneMixin],
+
+  getBackboneCollections: function () {
+    return [this.props.node.children];
+  },
+
   getInitialState: function() {
     return {
       visible: true,
-      node_type: this.props.node.node_type
+      node_type: this.props.node.get('node_type')
     };
+  },
+
+  componentDidMount: function () {
+    //var Router = Backbone.Router.extend({
+    //  routes: {
+    //    '': 'all',
+    //    'active': 'active',
+    //    'completed': 'completed'
+    //  },
+    //  all: this.setState.bind(this, {nowShowing: app.ALL_TODOS}),
+    //  active: this.setState.bind(this, {nowShowing: app.ACTIVE_TODOS}),
+    //  completed: this.setState.bind(this, {nowShowing: app.COMPLETED_TODOS})
+    //});
+
+    if (this.props.root) {
+      //new Router();
+      Backbone.history.start();
+
+      //this.props.node.fetch();
+    }
+  },
+
+  componentDidUpdate: function () {
+    // If saving were expensive we'd listen for mutation events on Backbone and
+    // do this manually. however, since saving isn't expensive this is an
+    // elegant way to keep it reactively up-to-date.
+    this.props.node.children.forEach(function (node) {
+      node.save();
+    });
   },
 
   handleTypeChange: function(newNodeType) {
@@ -27,6 +84,10 @@ app.AbstractNode = React.createClass({
     );
 
     this.forceUpdate();
+  },
+
+  removeNode: function() {
+    console.log(this.props.node);
   },
 
   render: function() {
@@ -80,6 +141,7 @@ app.AbstractNode = React.createClass({
           <app.Keypress keypress={this.props.keypress} />
           <app.NodeType active={this.state.node_type} handleTypeChange={this.handleTypeChange} />
           <ViewClass node={this.props.node} />
+          <button style={{float: "right"}} onClick={this.removeNode}>Remove</button>
         </div>
         <app.AddKeypress node_type={this.state.node_type} clicked={this.addNode} />
         <span className={React.addons.classSet(classObj)} onClick={this.toggle}>collapse</span>
