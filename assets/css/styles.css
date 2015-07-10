@@ -23,12 +23,17 @@ ul {
 
 .content {
   float: left;
+  min-width: 50%;
 }
 
 .content textarea {
   width: 90%;
   border-radius: 5px;
   border-color: #ccc;
+}
+
+.content input[type=checkbox] {
+  margin-right: 5px;
 }
 
 .keypress {
