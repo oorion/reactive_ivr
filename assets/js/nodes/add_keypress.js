@@ -1,9 +1,14 @@
 app.AddKeypress = React.createClass({
+  handleClick: function(event) {
+    event.preventDefault();
+    this.props.clicked();
+  },
+
   render: function() {
     return (
-      <div className="content">
-        <textarea value={this.props.node.prompt} />
-      </div>
+      <button style={{ display: (this.props.node_type == "Question" ? 'block' : 'none') }} onClick={this.handleClick}>
+        Add Keypress
+      </button>
     );
   }
 })

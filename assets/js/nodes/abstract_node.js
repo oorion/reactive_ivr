@@ -12,6 +12,23 @@ app.AbstractNode = React.createClass({
     });
   },
 
+  addNode: function() {
+    node = {
+      "node_type" : "Question",
+      "prompt" : "",
+      "destination" : null,
+      "id": null,
+      "leaf": false,
+      "children": []
+    }
+
+    this.props.node.children.push(
+      node
+    );
+
+    this.forceUpdate();
+  },
+
   render: function() {
     var childNodes;
     var classObj;
@@ -64,7 +81,7 @@ app.AbstractNode = React.createClass({
           <app.NodeType active={this.state.node_type} handleTypeChange={this.handleTypeChange} />
           <ViewClass node={this.props.node} />
         </div>
-        <button style={{ display: (this.state.node_type == "Question" ? 'block' : 'none') }}>Add Keypress</button>
+        <app.AddKeypress node_type={this.state.node_type} clicked={this.addNode} />
         <span className={React.addons.classSet(classObj)} onClick={this.toggle}>collapse</span>
         <ul style={style}>
           {childNodes}
