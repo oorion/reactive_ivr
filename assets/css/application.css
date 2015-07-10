@@ -291,7 +291,6 @@ body {
 
 textarea.form-control {
   height: 70px;
-  margin-top: 10px;
   margin-bottom: 10px; }
 
 input.form-control {
@@ -324,7 +323,6 @@ ul {
   border-radius: 4px;
   background-color: #eee;
   margin: 10px;
-  padding: 5px;
   overflow: auto; }
 
 .node-select {

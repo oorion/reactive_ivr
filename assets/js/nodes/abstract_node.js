@@ -64,6 +64,9 @@ app.AbstractNode = React.createClass({
   },
 
   handleTypeChange: function(newNodeType) {
+    // keep backbone up to date
+    this.props.node.set({ node_type: newNodeType });
+
     this.setState({
       node_type: newNodeType
     });
@@ -71,9 +74,9 @@ app.AbstractNode = React.createClass({
 
   addNode: function() {
     node = {
-      "node_type" : "Transfer",
+      "node_type" : "Connect",
       "prompt" : "",
-      "destination" : null,
+      "destination_phone_number" : "800-437-1234",
       "id": (new Date).getTime(),
       "leaf": false,
       "children": []
@@ -120,21 +123,23 @@ app.AbstractNode = React.createClass({
     var ViewClass;
 
     switch(this.state.node_type) {
-      case 'Question':
+      case 'Menu':
         ViewClass = app.QuestionNode;
         break;
 
-      case 'Transfer':
+      case 'Connect':
         ViewClass = app.TransferNode;
         break;
 
-      case 'Hang Up':
+      case 'EndCall':
         ViewClass = app.HangUpNode;
         break;
 
       default:
         throw("Unknown ivr node type: " + this.state.node_type);
     }
+
+    //<span className={React.addons.classSet(classObj)} onClick={this.toggle}>collapse</span>
 
     return (
       <div>
@@ -144,7 +149,7 @@ app.AbstractNode = React.createClass({
           <ViewClass node={this.props.node} />
           <button className="trash-btn" style={{float: "right"}} onClick={this.removeNode}><span className="glyphicon glyphicon-trash trash-glyph"></span></button>
         </div>
-        <span className={React.addons.classSet(classObj)} onClick={this.toggle}>collapse</span>
+
         <ul className="node-list" style={style}>
           {childNodes}
           <li className="add"><app.AddKeypress node_type={this.state.node_type} clicked={this.addNode} /></li>
