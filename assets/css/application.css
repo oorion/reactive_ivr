@@ -129,11 +129,7 @@ ul.nav > li:hover {
   background-color: #eee;
   /* undo "common" styles */ }
   .layout-dashboard #pageContentWrapper {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    font-size: 13px;
-    line-height: 27px;
-    color: #ccc; }
+    font-family: 'Open Sans', sans-serif; }
     .layout-dashboard #pageContentWrapper .dropdown-menu {
       background-color: #999; }
       .layout-dashboard #pageContentWrapper .dropdown-menu > li > a {
