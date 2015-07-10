@@ -97,3 +97,8 @@ input.form-control {
   padding: 5px 25px 5px 5px;
   font-size: 12px;
 }
+
+label {
+  font-weight: 400;
+  margin-top: 10px;
+}
