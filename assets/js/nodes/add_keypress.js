@@ -6,8 +6,8 @@ app.AddKeypress = React.createClass({
 
   render: function() {
     return (
-      <button style={{ display: (this.props.node_type == "Question" ? 'block' : 'none') }} onClick={this.handleClick}>
-        Add Keypress
+      <button className="btn add-keypress" style={{ display: (this.props.node_type == "Question" ? 'block' : 'none') }} onClick={this.handleClick}>
+      <i className="glyphicon glyphicon-plus"></i> Add Keypress
       </button>
     );
   }
