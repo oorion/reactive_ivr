@@ -6,10 +6,42 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/styles.css">
+
+    <script src="/js/react.js"></script>
+    <script type="text/jsx" src="/js/react_ivr.js"></script>
+    <script src="/js/JSXTransformer.js"></script>
   </head>
   <body>
+    <script>
+      ivr_json = [
+        {"node_type" : "Question",
+         "prompt" : "For sales, press one. For customer support, press two. If you reached this number by mistake, press 3.",
+         "destination" : null,
+         "id":164,
+         "leaf":false,
+         "children":
+           [{"node_type":"Transfer",
+             "prompt":"Please wait while we connect you with our nearest agent...",
+             "destination":"800-437-7950",
+             "id":165,
+             "leaf":true,
+             "children":[]},
+           {"node_type":"Transfer",
+             "prompt":"",
+             "destination":"800-437-7950",
+             "id":166,
+             "leaf":true,
+             "children":[]},
+           {"node_type":"Hang Up",
+             "prompt":"Sorry about that. Bye.",
+             "destination":null,
+             "id":167,
+             "leaf":true,
+             "children":[]}]}]
+    </script>
     <h1>Reactive Ivr</h1>
 
-    <script src="/js/client.js"></script>
+    <div id="example"></div>
+
   </body>
 </html>
