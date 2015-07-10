@@ -6,7 +6,7 @@ app.NodeType = React.createClass({
   render: function() {
     return (
       <select
-        className="node-select"
+        className="form-control node-select"
         onChange={this.onTypeChange}
         value={this.props.active}
         ref="nodeSelect">
