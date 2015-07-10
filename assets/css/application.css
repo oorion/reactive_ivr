@@ -313,6 +313,9 @@ body {
   font-family: "Helvetica Neue";
   /*margin: 20px;*/ }
 
+@media (min-width: 1200px) {
+  .container {
+    width: 95%; } }
 ul {
   list-style-type: none; }
 
