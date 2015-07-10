@@ -113,7 +113,7 @@ app.AbstractNode = React.createClass({
       style = {maxHeight: "0px", opacity: "0.01", transition: "all .3s ease-out", WebkitTransition: "all .3s ease-out"};
     }
     else {
-      style = {maxHeight: "1000px", opacity: "1", transition: "all .3s ease-in", WebkitTransition: "all .3s ease-in"};
+      style = {maxHeight: "10000px", opacity: "1", transition: "all .3s ease-in", WebkitTransition: "all .3s ease-in"};
 
     }
 
