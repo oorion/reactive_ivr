@@ -64,6 +64,7 @@ app.AbstractNode = React.createClass({
           <app.NodeType active={this.state.node_type} handleTypeChange={this.handleTypeChange} />
           <ViewClass node={this.props.node} />
         </div>
+        <button style={{ display: (this.state.node_type == "Question" ? 'block' : 'none') }}>Add Keypress</button>
         <span className={React.addons.classSet(classObj)} onClick={this.toggle}>collapse</span>
         <ul style={style}>
           {childNodes}
