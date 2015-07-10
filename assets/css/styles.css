@@ -12,10 +12,22 @@ ul {
   background-color: #eee;
   margin: 10px;
   padding: 5px;
+  overflow: auto
+}
+
+.node-select {
+  float: left;
+  margin-right: 10px;
 }
 
 .content {
   float: left;
+}
+
+.content textarea {
+  width: 90%;
+  border-radius: 5px;
+  border-color: #ccc;
 }
 
 .keypress {

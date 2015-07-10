@@ -1,8 +1,15 @@
 app.AbstractNode = React.createClass({
   getInitialState: function() {
     return {
-      visible: true
+      visible: true,
+      node_type: this.props.node.node_type
     };
+  },
+
+  handleTypeChange: function(newNodeType) {
+    this.setState({
+      node_type: newNodeType
+    });
   },
 
   render: function() {
@@ -33,7 +40,7 @@ app.AbstractNode = React.createClass({
 
     var ViewClass;
 
-    switch(this.props.node.node_type) {
+    switch(this.state.node_type) {
       case 'Question':
         ViewClass = app.QuestionNode;
         break;
@@ -47,24 +54,15 @@ app.AbstractNode = React.createClass({
         break;
 
       default:
-        throw("Unknown ivr node type: " + this.props.node.node_type);
+        throw("Unknown ivr node type: " + this.state.node_type);
     }
-
-    var keyPressObject = {
-      hidden: !this.props.keypress,
-      keypress: true
-    };
 
     return (
       <div>
-        <div className={this.props.node.node_type + " " + "node"}>
-          <div className={React.addons.classSet(keyPressObject)}>
-            {this.props.keypress}
-          </div>
-          <div className="content">
-            <ViewClass node={this.props.node} />
-          </div>
-          <div style={{clear: 'left'}} />
+        <div className={this.state.node_type + " " + "node"}>
+          <app.Keypress keypress={this.props.keypress} />
+          <app.NodeType active={this.state.node_type} handleTypeChange={this.handleTypeChange} />
+          <ViewClass node={this.props.node} />
         </div>
         <span className={React.addons.classSet(classObj)} onClick={this.toggle}>collapse</span>
         <ul style={style}>

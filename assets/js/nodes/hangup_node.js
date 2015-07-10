@@ -1,4 +1,4 @@
-app.QuestionNode = React.createClass({
+app.HangUpNode = React.createClass({
   render: function() {
     return (
       <div className="content">
@@ -6,4 +6,4 @@ app.QuestionNode = React.createClass({
       </div>
     );
   }
-});
+})
