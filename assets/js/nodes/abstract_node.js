@@ -110,7 +110,11 @@ app.AbstractNode = React.createClass({
 
     var style;
     if (!this.state.visible) {
-      style = {display: "none"};
+      style = {maxHeight: "0px", opacity: "0.01", transition: "all .3s ease-out", WebkitTransition: "all .3s ease-out"};
+    }
+    else {
+      style = {maxHeight: "1000px", opacity: "1", transition: "all .3s ease-in", WebkitTransition: "all .3s ease-in"};
+
     }
 
     var ViewClass;
