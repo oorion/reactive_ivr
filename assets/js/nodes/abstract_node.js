@@ -154,7 +154,7 @@ app.AbstractNode = React.createClass({
           <ViewClass node={this.props.node} />
           <button className="trash-btn" style={{float: "right"}} onClick={this.removeNode}><span className="glyphicon glyphicon-trash trash-glyph"></span></button>
         </div>
-        <span className={React.addons.classSet(classObj)} onClick={this.toggle}>collapse</span>
+        <button className={"btn btn-info " + React.addons.classSet(classObj)} onClick={this.toggle}>Collapse</button>
         <ul className="node-list children" style={style}>
           {childNodes}
           <li className="add"><app.AddKeypress node_type={this.state.node_type} clicked={this.addNode} /></li>
