@@ -19,7 +19,6 @@ var BackboneMixin = {
   }
 };
 
-
 app.AbstractNode = React.createClass({
   mixins: [BackboneMixin],
 
@@ -77,7 +76,7 @@ app.AbstractNode = React.createClass({
       "id": (new Date).getTime(),
       "leaf": false,
       "children": []
-    }
+    },
 
     this.props.node.children.create(node);
   },
@@ -144,7 +143,7 @@ app.AbstractNode = React.createClass({
           <ViewClass node={this.props.node} />
           <button className="trash-btn" style={{float: "right"}} onClick={this.removeNode}><span className="glyphicon glyphicon-trash trash-glyph"></span></button>
         </div>
-        <span className={React.addons.classSet(classObj)} onClick={this.toggle}>collapse</span>
+        <button className={"btn btn-info " + React.addons.classSet(classObj)} onClick={this.toggle}>  Collapse</button>
         <ul style={style}>
           {childNodes}
           <li className="add"><app.AddKeypress node_type={this.state.node_type} clicked={this.addNode} /></li>
@@ -154,6 +153,19 @@ app.AbstractNode = React.createClass({
   },
 
   toggle: function() {
-    this.setState({visible: !this.state.visible});
+
+    this.setState({
+      visible: !this.state.visible
+    });
+
+    if (this.state.visible == true) {
+      $(this.getDOMNode()).children('.togglable-down:first').html('Expand');
+    } else {
+      $(this.getDOMNode()).children('.togglable-up:first').html('Collapse');
+    }
+
   }
+
+
+
 });
