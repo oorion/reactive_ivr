@@ -389,4 +389,8 @@ h3 {
 li.add {
   margin-bottom: 20px; }
 
+.child-node {
+  border-left: 1.5px dashed #999;
+  padding: 5px; }
+
 /*# sourceMappingURL=application.css.map */

@@ -94,7 +94,7 @@ app.AbstractNode = React.createClass({
     if (anyChildren) {
       var self = this;
       childNodes = this.props.node.children.map(function(node, index) {
-        return <li key={node.get('id')}><app.AbstractNode node={node} keypress={index+1} /></li>
+        return <li className="child-node" key={node.get('id')}><app.AbstractNode node={node} keypress={index+1} /></li>
       });
 
       classObj = {
@@ -145,7 +145,7 @@ app.AbstractNode = React.createClass({
           <button className="trash-btn" style={{float: "right"}} onClick={this.removeNode}><span className="glyphicon glyphicon-trash trash-glyph"></span></button>
         </div>
         <span className={React.addons.classSet(classObj)} onClick={this.toggle}>collapse</span>
-        <ul style={style}>
+        <ul className="node-list" style={style}>
           {childNodes}
           <li className="add"><app.AddKeypress node_type={this.state.node_type} clicked={this.addNode} /></li>
         </ul>
