@@ -1,3 +1,7 @@
 var NodeCollection = Backbone.Collection.extend({
-  model: NodeModel
+  model: NodeModel,
+
+  sync: function() {
+    return false;
+  }
 })

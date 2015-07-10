@@ -71,33 +71,30 @@ app.AbstractNode = React.createClass({
 
   addNode: function() {
     node = {
-      "node_type" : "Question",
+      "node_type" : "Transfer",
       "prompt" : "",
       "destination" : null,
-      "id": null,
+      "id": (new Date).getTime(),
       "leaf": false,
       "children": []
     }
 
-    this.props.node.children.push(
-      node
-    );
-
-    this.forceUpdate();
+    this.props.node.children.create(node);
   },
 
   removeNode: function() {
-    console.log(this.props.node);
+    this.props.node.destroy();
   },
 
   render: function() {
     var childNodes;
     var classObj;
-    var anyChildren = this.props.node.children != null;
+    var anyChildren = this.props.node.children.length > 0;
 
     if (anyChildren) {
+      var self = this;
       childNodes = this.props.node.children.map(function(node, index) {
-        return <li key={index}><app.AbstractNode node={node} keypress={index+1} /></li>
+        return <li key={node.get('id')}><app.AbstractNode node={node} keypress={index+1} /></li>
       });
 
       classObj = {
@@ -143,10 +140,10 @@ app.AbstractNode = React.createClass({
           <ViewClass node={this.props.node} />
           <button className="trash-btn" style={{float: "right"}} onClick={this.removeNode}><span className="glyphicon glyphicon-trash trash-glyph"></span></button>
         </div>
-        <app.AddKeypress node_type={this.state.node_type} clicked={this.addNode} />
         <span className={React.addons.classSet(classObj)} onClick={this.toggle}>collapse</span>
         <ul style={style}>
           {childNodes}
+          <li className="add"><app.AddKeypress node_type={this.state.node_type} clicked={this.addNode} /></li>
         </ul>
       </div>
     );
