@@ -1,0 +1,72 @@
+#header {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.navbar-account-dropdown-orgs-container {
+  background-color: #fff;
+
+  .sub-heading {
+    color: #999;
+  }
+
+  .org-row {
+    vertical-align: middle;
+    width: $_nav_menu_height;
+  }
+}
+
+li {
+  /* to override global margin set in common.scss - remove once common is destroyed */
+  margin-bottom: 0;
+}
+
+.demo-band {
+  float: left;
+
+  padding: 2px 5px;
+  margin-top: -4px;
+  margin-left: 10px;
+
+  text-transform: uppercase;
+  font-size: .9em;
+
+  border: 1px solid darken(#FFE0B2, 5%);
+  border-radius: 4px;
+  background-color: #FFE0B2;
+  color: darken(#FFE0B2, 50%);
+}
+
+.logo-row {
+  background-color: #fff;
+  padding: 10px;
+
+  a.left {
+    height: 80px;
+  }
+
+  /* scale logos that are really big */
+  .vertical-align-helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  img.logo {
+    max-height: 80px;
+    margin-left: 15px;
+    vertical-align: middle;
+  }
+
+}
+
+.top-of-dropdown-menu {
+  padding-top: .4em;
+}
+
+.bottom-of-dropdown-menu {
+  padding-bottom: .4em;
+}
+
+.two-lines-with-btn-sm {
+  line-height: 15px;
+}

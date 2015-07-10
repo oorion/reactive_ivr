@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/styles.css">
+    <link href="css/application.css" media="screen" rel="stylesheet" type="text/css">
 
     <script>
       var app = {};
@@ -62,8 +63,96 @@
     <script type="text/jsx" src="/js/nodes/transfer_node.js"></script>
     <script type="text/jsx" src="/js/nodes/hangup_node.js"></script>
   </head>
-  <body>
-    <h1>Reactive Ivr</h1>
+
+  <body class="layout-dashboard">
+
+  <div id="container">
+    <div id="header">
+      <div class="logo-row">
+        <a href="#" class="left">
+          <span class="vertical-align-helper"></span>
+          <img alt="Zulu Servers" class="logo" src="../images/logo.png" title="Home">
+        </a>
+        <div class="demo-band">Demo Network</div>
+        <div class="dropdown dropdown right" id="orgChangerDropDown">
+                    <span class="dropdown-toggle">
+                        Zulu Servers (Network) <a href="#">stipton@invoca.com</a><b class="caret">&nbsp;</b>
+                    </span>
+          <div class="navbar-account-dropdown dropdown-menu dropdown-menu-right">
+            <div class="padding_large top-of-dropdown-menu">
+              <div class="left two-lines-with-btn-sm">
+                <b>Sarah Tipton</b><br>stipton@invoca.com
+              </div>
+              <div class="clear_both">
+
+              </div>
+            </div>
+            <div class="divider">
+
+            </div>
+
+          </div>
+        </div>
+        <div class="clear_both"></div>
+      </div>
+
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left">
+              <li class="nav-link" id="nav_item_dashboard_js">
+                <a href="#">Dashboard</a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Channels</a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Campaigns</a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Media Outlets</a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reports</a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Integrations</a>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <button class="btn-create btn" id="nav_item_create_js" type="button">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
+              </li>
+
+              <li class="dropdown right" id="nav_item_cog_js">
+                <span class="dropdown-toggle" data-toggle="dropdown" style="cursor: pointer">
+                    <span class="glyphicon glyphicon-cog"></span>
+                    <span class="caret"></span>
+                </span>
+              </li>
+
+              <li class="dropdown right" id="nav_item_question-sign_js">
+                  <span class="dropdown-toggle" style="cursor: pointer">
+                      <span class="glyphicon glyphicon-question-sign"></span>
+                      <span class="caret"></span>
+                  </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
 
     <div id="ivr-tree"></div>
 
@@ -73,6 +162,8 @@
           document.getElementById("ivr-tree")
       );
     </script>
+
+  </div>
 
   </body>
 </html>

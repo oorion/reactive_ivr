@@ -1,0 +1,130 @@
+$_header_height : 172px;
+$_nav_menu_height : 40px;
+
+.layout-setup {
+  background-color: $bg_light_color;
+
+  hr {
+    margin-top: 50px;
+    border-color: #ccc;
+  }
+
+  h1 {
+    font-size: 45px;
+    font-weight: 300;
+    line-height: 75px;
+  }
+
+  h2 {
+    font-size: 26px;
+    font-weight: 300;
+    line-height: 41px;
+    letter-spacing: 0px;
+    margin-top: 0px;
+  }
+}
+
+.layout-dashboard {
+  background-color: $bg_light_color;
+
+
+  $header_height: 55px;
+
+  #pageContentWrapper {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 27px;
+
+    color: $text_on_dark_bg_color;
+
+    .dropdown-menu {
+      background-color: #999;
+
+      > li > a {
+        color: $text_emphasized_on_dark_bg_color;
+        font-weight: 300;
+
+        /* put back to bootstrap style on hover/focus */
+        &:hover, &:focus {
+          color: #262626;
+        }
+      }
+
+      > li.active > a {
+        background-color: #428bca;
+
+        &:hover {
+          color: $text_emphasized_on_dark_bg_color;;
+        }
+      }
+    }
+  }
+
+  .loading-animation-multi-line {
+    background-image: image-url('loader-dark.gif');
+  }
+
+  .loading-page {
+    color: #888;
+  }
+
+
+  h1 {
+    font-size: 36px;
+    font-weight: 300;
+    line-height: $header_height;
+    margin-top: 0;
+    color: lighten($text_on_dark_bg_color, 10%);
+  }
+
+  .h1-line-height {
+    line-height: $header_height;
+  }
+
+  h2 {
+    font-weight: 300;
+  }
+
+  /* undo "common" styles */
+  #pageContentWrapper {
+    width: 100%;
+  }
+
+  #footer {
+    border-top-color: #222;
+    background-color: #272727;
+  }
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  padding-top: $_header_height + 15px;
+
+  #header {
+    height: $_header_height;
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  h1 {
+    font-weight: 300;
+    font-size: 28px;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  h1.new-section, h2.new-section {
+    margin-top: 50px;
+  }
+
+  #pageContentWrapper {
+    width: auto;
+    margin: 0 20px;
+  }
+}
