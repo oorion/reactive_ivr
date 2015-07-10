@@ -20,7 +20,7 @@ app.Prompt = React.createClass({
         </label>
 
         <div style={{display: this.state.visible ? 'block' : 'none'}}>
-          <textarea defaultValue={this.props.prompt} />
+          <textarea className="form-control" defaultValue={this.props.prompt} />
         </div>
       </div>
     );
