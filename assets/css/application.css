@@ -180,8 +180,7 @@ body {
   body h1.new-section, body h2.new-section {
     margin-top: 50px; }
   body #pageContentWrapper {
-    width: auto;
-    margin: 0 20px; }
+    width: auto; }
 
 #header {
   font-family: 'Open Sans', sans-serif; }
