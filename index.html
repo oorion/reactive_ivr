@@ -85,10 +85,10 @@
     <div id="ivr-tree"></div>
 
     <script type="text/jsx">
-      var node = new NodeModel(app.ivr_json);
-      console.log(node);
+      window.root = new NodeModel(app.ivr_json);
+      console.log(root);
       React.render(
-          <app.AbstractNode node={node} />,
+          <app.AbstractNode node={root} root={true} />,
           document.getElementById("ivr-tree")
       );
     </script>

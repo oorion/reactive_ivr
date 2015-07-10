@@ -2,7 +2,7 @@ app.QuestionNode = React.createClass({
   render: function() {
     return (
       <div className="content">
-        <textarea value={this.props.node.prompt} />
+        <textarea value={this.props.node.get('prompt')} />
       </div>
     );
   }
