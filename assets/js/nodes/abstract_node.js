@@ -35,6 +35,7 @@ app.AbstractNode = React.createClass({
   },
 
   componentDidMount: function () {
+    this.makeSortable();
     //var Router = Backbone.Router.extend({
     //  routes: {
     //    '': 'all',
@@ -52,6 +53,10 @@ app.AbstractNode = React.createClass({
 
       //this.props.node.fetch();
     }
+  },
+
+  makeSortable: function() {
+    $('ul.children').sortable();
   },
 
   componentDidUpdate: function () {
@@ -149,8 +154,8 @@ app.AbstractNode = React.createClass({
           <ViewClass node={this.props.node} />
           <button className="trash-btn" style={{float: "right"}} onClick={this.removeNode}><span className="glyphicon glyphicon-trash trash-glyph"></span></button>
         </div>
-
-        <ul className="node-list" style={style}>
+        <span className={React.addons.classSet(classObj)} onClick={this.toggle}>collapse</span>
+        <ul className="node-list children" style={style}>
           {childNodes}
           <li className="add"><app.AddKeypress node_type={this.state.node_type} clicked={this.addNode} /></li>
         </ul>
