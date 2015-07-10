@@ -29,6 +29,10 @@ app.AbstractNode = React.createClass({
     this.forceUpdate();
   },
 
+  removeNode: function() {
+    console.log(this.props.node);
+  },
+
   render: function() {
     var childNodes;
     var classObj;
@@ -80,6 +84,7 @@ app.AbstractNode = React.createClass({
           <app.Keypress keypress={this.props.keypress} />
           <app.NodeType active={this.state.node_type} handleTypeChange={this.handleTypeChange} />
           <ViewClass node={this.props.node} />
+          <button style={{float: "right"}} onClick={this.removeNode}>Remove</button>
         </div>
         <app.AddKeypress node_type={this.state.node_type} clicked={this.addNode} />
         <span className={React.addons.classSet(classObj)} onClick={this.toggle}>collapse</span>
