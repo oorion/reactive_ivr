@@ -52,10 +52,20 @@ body {
   color: #000;
 }
 
-.add-keypress {
+.btn-create{
   border: 1px solid #84BD00;
   background-color: #84BD00;
   color: #fff;
+}
+
+.btn-create, .btn-create:hover, .btn-create:focus, .btn-create:active, a.btn-create, a.btn-create:visited{
+  border:1px solid #84BD00;
+  background-color:#84BD00;
+  color:#fff;
+}
+.btn-create:hover, .btn-create:focus, .btn-create:active{
+  border:1px solid #79ae00;
+  background-color:#7db300;
 }
 
 textarea.form-control {
@@ -80,4 +90,85 @@ input.form-control {
 label {
   font-weight: 400;
   margin-top: 10px;
+}
+
+body {
+  font-family: "Helvetica Neue";
+  /*margin: 20px;*/
+}
+
+ul {
+  list-style-type: none;
+}
+
+.node {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #eee;
+  margin: 10px;
+  padding: 5px;
+  overflow: auto
+}
+
+.node-select {
+  float: left;
+  margin-right: 10px;
+}
+
+.content {
+  float: left;
+  min-width: 50%;
+}
+
+.content textarea {
+  width: 90%;
+  border-radius: 5px;
+  border-color: #ccc;
+}
+
+.content input[type=checkbox] {
+  margin-right: 5px;
+}
+
+.keypress {
+  float: left;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  background-color: #ddd;
+  padding: 5px 10px;
+  margin: 10px;
+}
+
+h5 {
+  margin-top: 0;
+  float: left;
+}
+
+h3 {
+  color: #BF616A;
+}
+
+.hidden {
+  display: none;
+}
+
+.togglable {
+  color: #D78770;
+  cursor: pointer;
+}
+
+.togglable-down::after,
+.togglable-up::after {
+  font-size: 8px;
+  margin-left: 0.5em;
+}
+
+.togglable-down::after {
+  content: "▼";
+  display: inline-block;
+}
+
+.togglable-up::after {
+  content: "▶";
+  display: inline-block;
 }
