@@ -141,7 +141,7 @@ app.AbstractNode = React.createClass({
           <app.Keypress keypress={this.props.keypress} />
           <app.NodeType active={this.state.node_type} handleTypeChange={this.handleTypeChange} />
           <ViewClass node={this.props.node} />
-          <button style={{float: "right"}} onClick={this.removeNode}>Remove</button>
+          <button className="trash-btn" style={{float: "right"}} onClick={this.removeNode}><span className="glyphicon glyphicon-trash trash-glyph"></span></button>
         </div>
         <app.AddKeypress node_type={this.state.node_type} clicked={this.addNode} />
         <span className={React.addons.classSet(classObj)} onClick={this.toggle}>collapse</span>
