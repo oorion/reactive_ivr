@@ -7,41 +7,54 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/styles.css">
 
+    <script>
+      var app = {};
+
+      app.ivr_json =
+        {
+          "node_type" : "Question",
+          "prompt" : "For sales, press one. For customer support, press two. If you reached this number by mistake, press 3.",
+          "destination" : null,
+          "id":164,
+          "leaf":false,
+          "children":
+            [{"node_type":"Transfer",
+              "prompt":"Please wait while we connect you with our nearest agent...",
+              "destination":"800-437-7950",
+              "id":165,
+              "leaf":true,
+              "children":null},
+              {"node_type":"Transfer",
+                "prompt":"",
+                "destination":"800-437-7950",
+                "id":166,
+                "leaf":true,
+                "children":null},
+              {"node_type":"Hang Up",
+                "prompt":"Sorry about that. Bye.",
+                "destination":null,
+                "id":167,
+                "leaf":true,
+                "children":null}]
+      }
+    </script>
+
     <script src="/js/react.js"></script>
-    <script type="text/jsx" src="/js/react_ivr.js"></script>
     <script src="/js/JSXTransformer.js"></script>
+
+    <script type="text/jsx" src="/js/react_ivr.js"></script>
   </head>
   <body>
-    <script>
-      ivr_json = [
-        {"node_type" : "Question",
-         "prompt" : "For sales, press one. For customer support, press two. If you reached this number by mistake, press 3.",
-         "destination" : null,
-         "id":164,
-         "leaf":false,
-         "children":
-           [{"node_type":"Transfer",
-             "prompt":"Please wait while we connect you with our nearest agent...",
-             "destination":"800-437-7950",
-             "id":165,
-             "leaf":true,
-             "children":[]},
-           {"node_type":"Transfer",
-             "prompt":"",
-             "destination":"800-437-7950",
-             "id":166,
-             "leaf":true,
-             "children":[]},
-           {"node_type":"Hang Up",
-             "prompt":"Sorry about that. Bye.",
-             "destination":null,
-             "id":167,
-             "leaf":true,
-             "children":[]}]}]
-    </script>
     <h1>Reactive Ivr</h1>
 
-    <div id="example"></div>
+    <div id="ivr-tree"></div>
+
+    <script type="text/jsx">
+      React.render(
+          <app.TreeNode node={app.ivr_json} />,
+          document.getElementById("ivr-tree")
+      );
+    </script>
 
   </body>
 </html>
