@@ -51,3 +51,33 @@ body {
 .panel-body {
   color: #000;
 }
+
+.add-keypress {
+  border: 1px solid #84BD00;
+  background-color: #84BD00;
+  color: #fff;
+}
+
+textarea.form-control {
+  height: 70px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+input.form-control {
+  display: inline;
+  width: auto;
+  margin-top: 10px;
+}
+
+.node-select {
+  margin: 10px;
+  width: auto;
+  padding: 5px 25px 5px 5px;
+  font-size: 12px;
+}
+
+label {
+  font-weight: 400;
+  margin-top: 10px;
+}
