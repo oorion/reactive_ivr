@@ -82,6 +82,7 @@ app.AbstractNode = React.createClass({
       "node_type" : "Connect",
       "prompt" : "",
       "destination_phone_number" : "800-437-1234",
+      "condition" : "NOT landline",
       "id": (new Date).getTime(),
       "leaf": false,
       "children": []
@@ -140,12 +141,16 @@ app.AbstractNode = React.createClass({
         ViewClass = app.HangUpNode;
         break;
 
+      case 'Condition':
+        ViewClass = app.ConditionNode;
+        break;
+
       default:
         throw("Unknown ivr node type: " + this.state.node_type);
     }
 
     //<span className={React.addons.classSet(classObj)} onClick={this.toggle}>collapse</span>
-
+//<span className={React.addons.classSet(classObj)} onClick={this.toggle}>collapse</span>
     return (
       <div>
         <div className={this.state.node_type + " " + "node"}>

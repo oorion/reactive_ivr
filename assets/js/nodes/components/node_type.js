@@ -12,6 +12,7 @@ app.NodeType = React.createClass({
         ref="nodeSelect">
         <option value="Menu"   >Ask a Question</option>
         <option value="Connect">Forward to call center</option>
+        <option value="Condition">Check a condition</option>
         <option value="EndCall">Hang Up</option>
       </select>
     );

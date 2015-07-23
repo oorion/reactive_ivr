@@ -52,10 +52,16 @@ body {
   color: #000;
 }
 
+.btn-info {
+margin-left: 10px;
+}
+
 .btn-create{
   border: 1px solid #84BD00;
   background-color: #84BD00;
   color: #fff;
+
+  margin-top: 10px;
 }
 
 .btn-create, .btn-create:hover, .btn-create:focus, .btn-create:active, a.btn-create, a.btn-create:visited{
